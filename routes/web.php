@@ -11,14 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test','ZkController@test');
 Route::get('/index','ZkController@index');
-
+Route::get('/zkusers', 'ZkController@users_index')->name('zkusers.index');
+Route::get('/zkusers/push', 'ZkController@push_all_zkusers')->name('zkusers.push');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+
