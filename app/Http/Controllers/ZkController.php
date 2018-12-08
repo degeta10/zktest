@@ -18,9 +18,16 @@ class ZkController extends Controller
 
    public function fingerprint()
    {
+      $tad_factory = new TADFactory(['ip'=>'192.168.1.201']);
+      $tad = $tad_factory->get_instance();
+      $comands = TAD::commands_available();
+      // $result = $tad->restart();
+      // return $comands;
+      // return $result;
+      $tad->alert("hi");
 
    }
-   
+
    public function push_all_zkusers()
    {
       $tad_factory = new TADFactory(['ip'=>'192.168.1.201']);
