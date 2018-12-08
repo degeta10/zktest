@@ -16,3 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/test','ZkController@test');
+Route::get('/index','ZkController@index');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
