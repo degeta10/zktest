@@ -235,6 +235,16 @@ class TADZKLib
         ]
     ];
 
+    public function writeLCD($rank, $text)
+	{
+		$command = CMD_WRITE_LCD;
+		$byte1 = chr((int)($rank % 256));
+		$byte2 = chr((int)($rank >> 8));
+		$byte3 = chr(0);
+		$command_string = $byte1.$byte2.$byte3.' '.$text;
+		return $this->send_command_to_device($command, $command_string);
+	}
+
     /**
      * Returns commands available by the class.
      *

@@ -18,14 +18,30 @@ class ZkController extends Controller
 
    public function fingerprint()
    {
-      $tad_factory = new TADFactory(['ip'=>'192.168.1.201']);
-      $tad = $tad_factory->get_instance();
-      $comands = TAD::commands_available();
-      // $result = $tad->restart();
-      // return $comands;
-      // return $result;
-      $tad->alert("hi");
+      $zk = new ZKLib('192.168.1.201');
+      $ret = $zk->connect();
+      // if ( $ret )
+      //    $zk->disable();
+      $zk->testVoice();
+      $zk->clearLcd();
+      $zk->writeLcd('3','Hello');
 
+      // return json_encode($zk->connect());
+
+      // $zk->restartDevice();
+      // $tad_factory = new TADFactory(['ip'=>'192.168.1.201']);
+      // $tad = $tad_factory->get_instance();
+      // $tad = $tad_factory->get_instance(); 
+      // $rank = "1";
+      // $text ="Hello";
+      // $tad->writeLCD($rank,$text);
+
+      // $all_user_info = $tad->get_all_user_info();
+      // $all_users_array_info = $all_user_info->to_array();
+
+      // return json_encode($zk->connect());
+      // $zk->clearLCD();
+      // return $all_users_array_info;
    }
 
    public function push_all_zkusers()
@@ -38,7 +54,6 @@ class ZkController extends Controller
       return $users_array_info;
 
       foreach ($users_array_info as $user) {
-      // return $user;
          $result = ZkUser::insert([
             'pin'=>  $user['PIN'],
             'name'=> $user['Name'],
